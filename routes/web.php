@@ -20,13 +20,19 @@ Auth::routes();
 
 Route::group (['middleware' => ['auth'],'prefix' => '/home'],function(){
 
-
+     //首頁
      Route::get('/', 'HomeController@index');
 
-     Route::get('/news', 'NewsController@index');
-     Route::post('/news/store', 'NewsController@store');
-     Route::post('/news/update', 'NewsController@edit');
-     Route::post('/news/delete', 'NewsController@delete');
+     //最新消息
+     Route::get('news', 'NewsController@index');
+
+     Route::get('news/create', 'NewsController@create');
+     Route::post('news/store', 'NewsController@store');
+
+     Route::get('news/edit/{id}', 'NewsController@edit');
+     Route::post('news/update/{id}', 'NewsController@update');
+     
+     Route::post('news/delete', 'NewsController@delete');
 
 });
 

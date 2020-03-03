@@ -19,6 +19,8 @@ class CreateNews extends Migration
             $table->text('title');
             $table->longtext('content');
             $table->timestamps();
+            $table->longtext('content');
+
         });
     }
 
