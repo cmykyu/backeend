@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <a href="news/create"class="btn btn-success">新增最新消息</a>
+    <a href="news/create" class="btn btn-success">新增最新消息</a>
     <hr>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -14,21 +14,31 @@
                 <th>img</th>
                 <th>title</th>
                 <th>content</th>
+                <th>sort</th>
                 <th width="90"></th>
+
             </tr>
         </thead>
         <tbody>
             @foreach ($all_news as $item)
             <tr>
                 <td>
-                    <img src="{{$item->img}}" alt="" width="400">
+                    <img src="{{asset('/storage/'.$item->img)}}" alt="" width="400">
                 </td>
                 <td>{{$item->title}}</td>
                 <td>{{$item->content}}</td>
+                <td>{{$item->sort}}</td>
                 <td>
-                    <a href="news/edit/{{$item->id}}"class="btn btn-success btn-sm">修改</a>
-                    <button class="btn btn-danger btn-sm">刪除</button>
+                    <a href="news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
+
+                    {{-- 要對按鈕做onclick,才進行function刪除 --}}
+                    <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
+                    <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST"
+                        style="display: none;">
+                        @csrf
+                    </form>
                 </td>
+
             </tr>
             @endforeach
 
@@ -46,9 +56,24 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
+<script>
+
+    $(document).ready(function() {
     $('#example').DataTable();
-} );
-    </script>
+    } );
+
+    // js confirm box
+    function show_confirm(id)
+    {
+        var r=confirm("你確定要刪除嗎")
+        if (r==true)
+
+        {
+        //ID要一致
+        document.getElementById('delete-form-'+id).submit();
+        }
+
+    }
+</script>
+
 @endsection

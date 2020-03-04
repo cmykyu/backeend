@@ -5,6 +5,7 @@
 
 
 
+
     <div class="container">
         <div class="media-container-row">
             @foreach($news_data as $item)

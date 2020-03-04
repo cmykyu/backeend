@@ -31,8 +31,8 @@ Route::group (['middleware' => ['auth'],'prefix' => '/home'],function(){
 
      Route::get('news/edit/{id}', 'NewsController@edit');
      Route::post('news/update/{id}', 'NewsController@update');
-     
-     Route::post('news/delete', 'NewsController@delete');
+
+     Route::post('news/delete/{id}', 'NewsController@delete');
 
 });
 
