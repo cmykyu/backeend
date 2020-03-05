@@ -10,11 +10,11 @@
 
         <div class="form-group">
         <label for="img">現有圖片</label>
-        <img src="{{$news->img}}" alt="" width="400">
+        <img src="{{asset('/storage/'.$news->img)}}" alt="" width="400">
         </div>
 
         <div class="form-group">
-        <label for="img">重新上傳檔案</label>
+        <label for="title">重新上傳檔案</label>
         <input type="file" class="form-control" id="img" aria-describedby="emailHelp" name="img" >
         </div>
 

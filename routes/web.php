@@ -14,6 +14,7 @@
 Route::get('/', 'FrontController@index');
 
 Route::get('/news','FrontController@news');
+Route::get('/news_detail/{id}','FrontController@news_detail');
 
 Auth::routes();
 
