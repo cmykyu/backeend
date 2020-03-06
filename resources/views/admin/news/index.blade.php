@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -23,10 +24,10 @@
             @foreach ($all_news as $item)
             <tr>
                 <td>
-                    <img src="{{asset('/storage/'.$item->img)}}" alt="" width="400">
+                    <img src="{{$item->img}}" alt="" width="400">
                 </td>
                 <td>{{$item->title}}</td>
-                <td>{{$item->content}}</td>
+                <td>{!!$item->content!!}</td>
                 <td>{{$item->sort}}</td>
                 <td>
                     <a href="news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
@@ -55,6 +56,8 @@
 @section('js')
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+
 
 <script>
 

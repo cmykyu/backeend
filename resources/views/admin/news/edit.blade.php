@@ -1,5 +1,6 @@
 @extends('layouts/app')
 @section('css')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 <style>
     .news_img_card .btn-danger {
         position: absolute;
@@ -19,7 +20,7 @@
 
         <div class="form-group">
         <label for="img">現有主要圖片</label>
-        <img class="img-fluid" src="{{asset('/storage/'.$news->img)}}" alt="" width="400">
+        <img class="img-fluid" src="{{$news->img}}" alt="" width="400">
         </div>
 
         <div class="form-group">
@@ -35,15 +36,15 @@
             <div class="col-2">
                 <div class="news_img_card" data-newsimgid="{{$item->id}}">
                     <button type="button" class="btn btn-danger" data-newsimgid="{{$item->id}}">X</button>
-                    <img class="img-fluid" src="{{asset('/storage/'.$news->img)}}" alt="">
-                    <input class="form-control" type="text" value="{{$item->sort}}">
+                    <img class="img-fluid" src="{{$item->img_url}}" alt="">
+                <input class="form-control" type="text" value="{{$item->sort}}" onchange="ajax_post_sort(this,{{$item->id}})" name="sort">
                 </div>
             </div>
             @endforeach
         </div>
         <div class="form-group">
         <label for="title">新增多張圖片組(建議圖片尺寸寬400px x 高200px)</label>
-        <input type="file" class="form-control" id="news_imgs" name="news_imgs[]" required multiple>
+        <input type="file" class="form-control" id="news_imgs" name="news_imgs[]" multiple>
         </div>
         <hr>
         <div class="form-group">
@@ -67,6 +68,13 @@
 @endsection
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+  $('#content').summernote({minHeight:200});
+});
+</script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -89,8 +97,28 @@
         });
     });
 
+    function ajax_post_sort(element,img_id){
+        console.log(element);
+        var img_id;
+        var sort_value = element.value;
+        $.ajax({
+            url: "/home/ajax_post_sort",
+            method: 'post',
+            data: {
+                 id:img_id,
+                 sort:sort_value
+            },
+            success: function(result){
+
+
+            }
+        });
+
+    }
+
 </script>
 @endsection
+
 
 
 

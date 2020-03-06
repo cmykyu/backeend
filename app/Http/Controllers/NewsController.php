@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\News;
 use App\NewsImgs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
@@ -47,7 +48,7 @@ class NewsController extends Controller
 
             foreach ($files as $file) {
                 //上傳圖片
-                $path = $this->fileUpload($file,'news');
+                $path = $this->fileUpload($file,'_news_imgs');
 
                 //新增資料進DB
 
@@ -89,7 +90,31 @@ class NewsController extends Controller
             $file = $request->file('img');
             $path = $this->fileUpload($file,'news');
             $request_data['img'] = $path;
+
         }
+        //update多張圖片
+
+        if($request->hasFile('news_imgs')){
+
+            $files = $request->file('news_imgs');
+            // dd($files);
+            foreach($files as $file){
+
+            $path = $this->fileUpload($file,'news');
+
+            //建立資料庫
+            $news_imgs = new NewsImgs;
+
+            $news_imgs->news_id = $item->id;
+            $news_imgs->img_url = $path;
+            $news_imgs->save();
+
+            }
+
+
+
+        }
+
         $item->update($request_data);
         return redirect('/home/news');
     }
@@ -102,11 +127,24 @@ class NewsController extends Controller
 
         //下判斷式
         if(file_exists(public_path().$old_image)){
-            File::delete(public_path().$old_img);
+            File::delete(public_path().$old_image);
+
 
         }
 
         $item->delete();
+
+        $news_imgs = NewsImgs::where('news_id',$id)->get();
+        foreach($news_imgs as $news_img){
+            $old_image = $news_img->img_url;
+            if(file_exists(public_path().$old_image)){
+                File::delete(public_path().$old_image);
+
+            }
+            $news_img->delete();
+
+        }
+
         return redirect('/home/news');
     }
 
@@ -143,5 +181,19 @@ class NewsController extends Controller
 
 
         return "delete success";
+    }
+
+    public function ajax_post_sort(Request $request){
+        //抓sort值
+
+        $name_id = $request->id;
+        $sort = $request->sort;
+
+        $img = NewsImgs::find($name_id);
+
+        $img->sort = $sort;
+        $img->save();
+
+        return"";
     }
 }

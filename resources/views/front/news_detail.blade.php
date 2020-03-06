@@ -14,12 +14,12 @@
             多張圖片:
             @foreach ($news->news_imgs as $news_img)
             {{-- {{$news_img->img_url}} --}}
-            <img src="{{asset('/storage/'.$news->img)}}" alt="" width="250">
+            <img src="{{$news_img->img_url}}" width="250">
             @endforeach
         </div>
 
     </div>
-
+</section>
 @endsection
 
 

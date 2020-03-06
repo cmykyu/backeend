@@ -105,3 +105,9 @@
     </div>
 </section>
 @endsection
+@section('js')
+<script>
+    $('.card-box*').attr('style','');
+</script>
+
+@endsection

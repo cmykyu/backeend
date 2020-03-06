@@ -1,5 +1,5 @@
 @extends('layouts/app')
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 
 
 @section('content')
@@ -30,11 +30,21 @@
 
         <div class="form-group">
         <label class="content" for="exampleCheck1">content</label>
-        <input type="text" class="form-control" id="content" name="content">
+        <textarea type="text" class="form-control" id="content" name="content"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+<script>
+    $(document).ready(function() {
+  $('#content').summernote({minHeight:200});
+});
+</script>
 
 @endsection
 
