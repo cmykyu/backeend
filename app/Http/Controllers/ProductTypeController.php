@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Products;
 use App\ProductTypes;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 
@@ -73,7 +74,7 @@ class ProductTypeController extends Controller
     public function edit ($id){
 
         // $news = News::where('id','=',$id)->first();
-        $productTypes= ProductType ::all();
+        $productTypes= ProductTypes ::all();
         $products = Products::with("products_imgs")->find($id);
         return view('admin/products/edit',compact('products'));
     }
@@ -136,16 +137,16 @@ class ProductTypeController extends Controller
 
         $item->delete();
 
-        $news_imgs = ProductType::where('news_id',$id)->get();
-        foreach($news_imgs as $news_img){
-            $old_image = $news_img->img_url;
-            if(file_exists(public_path().$old_image)){
-                File::delete(public_path().$old_image);
+        $news_imgs = ProductTypes::where('news_id',$id)->get();
+        // foreach($news_imgs as $news_img){
+        //     $old_image = $news_img->img_url;
+        //     if(file_exists(public_path().$old_image)){
+        //         File::delete(public_path().$old_image);
 
-            }
-            $news_img->delete();
+        //     }
+        //     $news_img->delete();
 
-        }
+        // }
 
         return redirect('/home/products');
     }

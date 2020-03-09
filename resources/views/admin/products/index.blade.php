@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th>img</th>
-                <th>title</th>
+                <th>type</th>
                 <th>content</th>
                 <th>sort</th>
                 <th width="90"></th>
@@ -26,7 +26,7 @@
                 <td>
                     <img src="{{$item->img}}" alt="" width="400">
                 </td>
-                <td>{{$item->title}}</td>
+                <td>{{$item->type}}</td>
                 <td>{!!$item->content!!}</td>
                 <td>{{$item->sort}}</td>
                 <td>

@@ -14,8 +14,8 @@
 
 @section('content')
 <div class="container">
-    <h3>編輯最新消息</h3>
-    <form method="POST" action="/home/news/update/{{$products->id}}" enctype="multipart/form-data">
+    <h3>編輯類別</h3>
+    <form method="POST" action="/home/producttypes/update/{{$producttypes->id}}" enctype="multipart/form-data">
         @csrf
 
         {{-- <div class="form-group">
@@ -23,14 +23,14 @@
         <img class="img-fluid" src="{{$products->img}}" alt="" width="400">
         </div> --}}
 
-        <div class="form-group">
+        {{-- <div class="form-group">
         <label for="title">重新上傳主要圖片
             (建議圖片尺寸寬400px x 高200px)
         </label>
         <input type="file" class="form-control" id="img" name="img" >
-        </div>
+        </div> --}}
         <hr>
-        <div class="row">
+        {{-- <div class="row">
             現有多張圖片組
             @foreach ($products->products_imgs as $item)
             <div class="col-2">
@@ -41,25 +41,25 @@
                 </div>
             </div>
             @endforeach
-        </div>
-        <div class="form-group">
+        </div> --}}
+        {{-- <div class="form-group">
         <label for="title">新增多張圖片組(建議圖片尺寸寬400px x 高200px)</label>
         <input type="file" class="form-control" id="news_imgs" name="news_imgs[]" multiple>
-        </div>
+        </div> --}}
         <hr>
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$news->title}}">
+            <label for="type">Title</label>
+            <input type="text" class="form-control" id="type" name="type" value="{{$producttypes->type}}">
         </div>
         <div class="form-group">
             <label for="sort">權重(數字越大的排在越前面)</label>
-            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$producttypes->sort}}">
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="content">Content</label>
             <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Submit</button>
 
     </form>
