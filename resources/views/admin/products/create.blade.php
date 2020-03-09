@@ -4,23 +4,18 @@
 
 @section('content')
 <div class="container">
-    <h3>建立新頁面</h3>
+    <h3>建立新類別</h3>
                                                   {{-- 設定表 單的MIME編碼 --}}
-    <form method="POST" action="/home/news/store" enctype="multipart/form-data">
+    <form method="POST" action="/home/products/store" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
+        {{-- <div class="form-group">
         <label for="img">主要圖片</label>
         <input type="file" class="form-control" id="img" aria-describedby="emailHelp" name="img" >
-        </div>
+        </div> --}}
 
         <div class="form-group">
-        <label for="news_imgs">多張圖片上傳</label>
-        <input type="file" class="form-control" id="news_imgs" aria-describedby="emailHelp" name="news_imgs[]" multiple>
-        </div>
-
-        <div class="form-group">
-        <label for="title">title</label>
-        <input type="text" class="form-control" id="title" name="title">
+        <label for="type">type</label>
+        <input type="text" class="form-control" id="type" name="type">
         </div>
 
         <div class="form-group">
@@ -28,10 +23,10 @@
         <input type="number" class="form-control" id="sort" name="sort">
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
         <label class="content" for="exampleCheck1">content</label>
         <textarea type="text" class="form-control" id="content" name="content"></textarea>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

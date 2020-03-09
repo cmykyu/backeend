@@ -5,6 +5,7 @@ use DB;
 
 
 use App\News;
+use App\Products;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -22,6 +23,15 @@ class FrontController extends Controller
         $news = News::find($id);
         return view ('front/news_detail', compact('news'));
     }
+
+    public function products(){
+        return view ('front/products');
+    }
+
+    // public function products_detail($id){
+    //     $news = Products::find($id);
+    //     return view ('front/news_detail', compact('news'));
+    // }
 
 
 

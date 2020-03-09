@@ -40,18 +40,20 @@
                             <a class="nav-link" href="/home/news">最新消息</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                營業據點<span class="caret"></span>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/home/products" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                菜單管理<span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">台中中興大學
-                                </a>
+
+
+                                <a class="dropdown-item" href="/home/productType">產品類型管理</a>
+                                <a class="dropdown-item" href="/home/products">產品管理</a>
+
 
 
                             </div>
+
                         </li>
 
 
