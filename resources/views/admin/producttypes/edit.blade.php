@@ -15,7 +15,7 @@
 @section('content')
 <div class="container">
     <h3>編輯類別</h3>
-    <form method="POST" action="/home/producttypes/update/{{$producttypes->id}}" enctype="multipart/form-data">
+    <form method="POST" action="/home/productType/update/{{$productTypes->id}}" enctype="multipart/form-data">
         @csrf
 
         {{-- <div class="form-group">
@@ -29,7 +29,7 @@
         </label>
         <input type="file" class="form-control" id="img" name="img" >
         </div> --}}
-        <hr>
+
         {{-- <div class="row">
             現有多張圖片組
             @foreach ($products->products_imgs as $item)
@@ -49,11 +49,11 @@
         <hr>
         <div class="form-group">
             <label for="type">Title</label>
-            <input type="text" class="form-control" id="type" name="type" value="{{$producttypes->type}}">
+            <input type="text" class="form-control" id="type" name="type" value="{{$productTypes->type}}">
         </div>
         <div class="form-group">
             <label for="sort">權重(數字越大的排在越前面)</label>
-            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$producttypes->sort}}">
+            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$productTypes->sort}}">
         </div>
 
         {{-- <div class="form-group">

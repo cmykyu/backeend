@@ -74,28 +74,28 @@ class ProductTypeController extends Controller
     public function edit ($id){
 
         // $news = News::where('id','=',$id)->first();
-        $productTypes= ProductTypes ::all();
-        $products = Products::with("products_imgs")->find($id);
-        return view('admin/products/edit',compact('products'));
+
+        $productTypes = ProductTypes::find($id);
+        return view('admin/producttypes/edit',compact('productTypes'));
     }
     public function update (Request $request,$id){
 
         $request_data = $request->all();
-        $item = Products::find($id);
+        $item = ProductTypes::find($id);
 
-        //假如上傳新圖片
-        if($request->hasFile('img')){
 
-            //舊圖片就要刪除
-            $old_image = $item->img;
-            File::delete(public_path().$old_image);
+        // if($request->hasFile('img')){
 
-            //再上傳新圖片
-            $file = $request->file('img');
-            $path = $this->fileUpload($file,'products');
-            $request_data['img'] = $path;
 
-        }
+        //     $old_image = $item->img;
+        //     File::delete(public_path().$old_image);
+
+
+        //     $file = $request->file('img');
+        //     $path = $this->fileUpload($file,'products');
+        //     $request_data['img'] = $path;
+
+        // }
         //update多張圖片
 
         // if($request->hasFile('news_imgs')){
@@ -120,24 +120,24 @@ class ProductTypeController extends Controller
         // }
 
         $item->update($request_data);
-        return redirect('/home/products');
+        return redirect('/home/productType');
     }
     public function delete (Request $request,$id){
 
-        $item = Products::find($id);
+        $item = ProductTypes::find($id);
 
-        $old_image = $item->img;
+        // $old_image = $item->img;
 
         //下判斷式
-        if(file_exists(public_path().$old_image)){
-            File::delete(public_path().$old_image);
+        // if(file_exists(public_path().$old_image)){
+        //     File::delete(public_path().$old_image);
 
 
-        }
+        // }
 
         $item->delete();
 
-        $news_imgs = ProductTypes::where('news_id',$id)->get();
+        // $news_imgs = ProductTypes::where('id',$id)->get();
         // foreach($news_imgs as $news_img){
         //     $old_image = $news_img->img_url;
         //     if(file_exists(public_path().$old_image)){
@@ -148,7 +148,7 @@ class ProductTypeController extends Controller
 
         // }
 
-        return redirect('/home/products');
+        return redirect('/home/productType');
     }
     private function fileUpload($file,$dir){
         //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤

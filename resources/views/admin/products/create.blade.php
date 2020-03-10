@@ -14,8 +14,15 @@
         </div>
 
         <div class="form-group">
-        <label for="type">type</label>
-        <input type="text" class="form-control" id="type" name="type">
+
+            <label for="exampleFormControlSelect1">type</label>
+            <select class="form-control" name="type" >
+            @foreach ($productTypes as $item)
+
+            <option value="{{$item->type}}">{{$item->type}}</option>
+            @endforeach
+
+            </select>
         </div>
 
         <div class="form-group">

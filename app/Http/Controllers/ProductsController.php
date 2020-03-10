@@ -17,7 +17,8 @@ class ProductsController extends Controller
 
     }
     public function create(){
-        return view('admin/products/create');
+        $productTypes= ProductTypes ::all();
+        return view('admin/products/create',compact('productTypes'));
 
     }
 
@@ -38,7 +39,10 @@ class ProductsController extends Controller
             $products_data['img'] = $path;
 
         }
+
         Products::create($products_data);
+
+
         return redirect('/home/products');
 
 
@@ -73,8 +77,8 @@ class ProductsController extends Controller
 
         // $news = News::where('id','=',$id)->first();
         $productTypes= ProductTypes ::all();
-        $products = Products::with("products_imgs")->find($id);
-        return view('admin/products/edit',compact('products'));
+        $products = Products::find($id);
+        return view('admin/products/edit',compact('products','productTypes'));
     }
     public function update (Request $request,$id){
 
@@ -135,16 +139,16 @@ class ProductsController extends Controller
 
         $item->delete();
 
-        $products_imgs = ProductTypes::where('news_id',$id)->get();
-        foreach($products_imgs as $products_img){
-            $old_image = $products_img->img_url;
-            if(file_exists(public_path().$old_image)){
-                File::delete(public_path().$old_image);
+        // $products_imgs = Products::where('id',$id)->get();
+        // foreach($products_imgs as $products_img){
+        //     $old_image = $products_img->img_url;
+        //     if(file_exists(public_path().$old_image)){
+        //         File::delete(public_path().$old_image);
 
-            }
-            $products_img->delete();
+        //     }
+        //     $products_img->delete();
 
-        }
+        // }
 
         return redirect('/home/products');
     }
@@ -166,35 +170,35 @@ class ProductsController extends Controller
         //回傳 資料庫儲存用的路徑格式
         return '/upload/'.$dir.'/'.$filename;
     }
-    public function ajax_delete_news_imgs(Request $request)
-    {
-        $newsimgid = $request->newsimgid;
+    // public function ajax_delete_news_imgs(Request $request)
+    // {
+    //     $newsimgid = $request->newsimgid;
 
-        $item = NewsImgs::find($newsimgid);
-        $old_image = $item->img;
+    //     $item = NewsImgs::find($newsimgid);
+    //     $old_image = $item->img;
 
-        if(file_exists(public_path().$old_image)){
-            File::delete(public_path().$old_image);
-        }
+    //     if(file_exists(public_path().$old_image)){
+    //         File::delete(public_path().$old_image);
+    //     }
 
-        $item->delete();
+    //     $item->delete();
 
 
-        return "delete success";
-    }
-    public function ajax_post_sort(Request $request){
-        //抓sort值
+    //     return "delete success";
+    // }
+    // public function ajax_post_sort(Request $request){
 
-        $name_id = $request->id;
-        $sort = $request->sort;
 
-        $img = NewsImgs::find($name_id);
+    //     $name_id = $request->id;
+    //     $sort = $request->sort;
 
-        $img->sort = $sort;
-        $img->save();
+    //     $img = NewsImgs::find($name_id);
 
-        return"";
-    }
+    //     $img->sort = $sort;
+    //     $img->save();
+
+    //     return"";
+    // }
 
 
 

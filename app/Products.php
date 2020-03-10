@@ -11,8 +11,8 @@ class Products extends Model
         'img', 'type', 'sort', 'content'
     ];
 
-    public function products(){
-        return $this->hasMany('App\Products')->orderby('sort','desc');
+    public function product_types(){
+        return $this->belongsTo('App\ProductTypes','type');
     }
 
 

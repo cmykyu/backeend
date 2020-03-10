@@ -2,7 +2,7 @@
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 <style>
-    .news_img_card .btn-danger {
+    .products_img_card .btn-danger {
         position: absolute;
         right: -5px;
         top: -15px;
@@ -15,7 +15,7 @@
 @section('content')
 <div class="container">
     <h3>編輯最新消息</h3>
-    <form method="POST" action="/home/news/update/{{$products->id}}" enctype="multipart/form-data">
+    <form method="POST" action="/home/products/update/{{$products->id}}" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
@@ -30,35 +30,54 @@
         <input type="file" class="form-control" id="img" name="img" >
         </div>
         <hr>
-        <div class="row">
+        {{-- <div class="row">
             現有多張圖片組
             @foreach ($products->products_imgs as $item)
             <div class="col-2">
-                <div class="news_img_card" data-newsimgid="{{$item->id}}">
-                    <button type="button" class="btn btn-danger" data-newsimgid="{{$item->id}}">X</button>
+                <div class="products_img_card" data-productsimgid="{{$item->id}}">
+                    <button type="button" class="btn btn-danger" data-productsimgid="{{$item->id}}">X</button>
                     <img class="img-fluid" src="{{$item->img_url}}" alt="">
                 <input class="form-control" type="text" value="{{$item->sort}}" onchange="ajax_post_sort(this,{{$item->id}})" name="sort">
                 </div>
             </div>
             @endforeach
-        </div>
+        </div> --}}
         <div class="form-group">
         <label for="title">新增多張圖片組(建議圖片尺寸寬400px x 高200px)</label>
-        <input type="file" class="form-control" id="news_imgs" name="news_imgs[]" multiple>
+        <input type="file" class="form-control" id="products_imgs" name="products_imgs[]" multiple>
         </div>
         <hr>
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$news->title}}">
+
+            <label for="exampleFormControlSelect1">type</label>
+
+            <select class="form-control" name="type" >
+            @foreach ($productTypes as $item)
+
+            <option value="{{$item->type}}"
+                @if($item->id === $products->id)
+
+                selected @endif>{{ $item->type}}</option>
+            @endforeach
+
+            </select>
+
+            {{-- <select class="form-control" name="type_id" id="type_id">
+                @foreach ($productTypes as $productType)
+                <option value="{{ $productType->id }}"
+                    @if($item->type_id === $productType->id)
+                    selected @endif>{{ $productType->type_name }}</option>
+                @endforeach
+            </select> --}}
         </div>
         <div class="form-group">
             <label for="sort">權重(數字越大的排在越前面)</label>
-            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+            <input type="number" min="0" class="form-control" id="sort" name="sort" value="{{$products->sort}}">
         </div>
 
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
+            <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$products->content}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -82,17 +101,17 @@
         }
     });
 
-    $('.news_img_card .btn-danger').click(function(){
-        var newsimgid = this.getAttribute('data-newsimgid')
+    $('.products_img_card .btn-danger').click(function(){
+        var productsimgid = this.getAttribute('data-productsimgid')
 
         $.ajax({
-            url: "/home/ajax_delete_news_imgs",
+            url: "/home/ajax_delete_products_imgs",
             method: 'post',
             data: {
-            newsimgid: newsimgid,
+            productsimgid: productsimgid,
             },
             success: function(result){
-                $(`.news_img_card[data-newsimgid=${newsimgid}]`).remove();
+                $(`.products_img_card[data-productsimgid=${productsimgid}]`).remove();
             }
         });
     });
