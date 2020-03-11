@@ -69,6 +69,11 @@
                        shop now
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/contact">
+                       contact
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

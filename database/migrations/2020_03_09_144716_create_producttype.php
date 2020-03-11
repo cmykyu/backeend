@@ -15,8 +15,7 @@ class CreateProducttype extends Migration
     {
         Schema::create('producttype', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('title');
-            $table->longtext('content');
+            $table->text('type');
             $table->bigInteger('sort')->default(0);
             $table->timestamps();
         });

@@ -19,6 +19,8 @@ Route::get('/news_detail/{id}','FrontController@news_detail');
 Route::get('/products','FrontController@products');
 Route::get('/products_detail/{id}','FrontController@products_detail');
 
+Route::get('/contact','FrontController@contact');
+
 Auth::routes();
 
 
@@ -62,6 +64,9 @@ Route::group (['middleware' => ['auth'],'prefix' => '/home'],function(){
      Route::post('productType/update/{id}', 'ProductTypeController@update');
 
      Route::post('productType/delete/{id}', 'ProductTypeController@delete');
+
+     //聯絡我們
+
 
 });
 
