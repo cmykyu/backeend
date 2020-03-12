@@ -1,153 +1,150 @@
 @extends('layouts/nav')
+@endsection
+
 @section('css')
 <style>
-    .product-card {
-        width: 606px;
-        min-height: 500px;
-        box-sizing: border-box;
-        padding: 48px 48px 40px;
-        margin-bottom: 60px;
-        background: #fafafa;
-    }
+.Cart {
 
-    .product-info {
-        border-bottom: 1px solid #eee;
-        padding-top: 20px;
-        padding-bottom: 20px
-    }
+  margin: 50px auto;
+}
 
-    .product-name {
-        width: 100%;
-        font-size: 40px;
-        font-weight: 400;
-        line-height: 48px;
-        color: #000;
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.Cart__header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+}
 
-    .product-title {
-        font-size: 20px;
-        line-height: 24px;
-        color: #757575;
+.Cart__headerGrid {
+  text-align: center;
+  background: #f3f3f3;
+}
 
-    }
+.Cart__product {
+  display: grid;
+  grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+  height: 90px;
+}
 
-    .product-sub-title {
-        color: #ff6700;
-        font-weight: 400;
-    }
+.Cart__productGrid {
+  padding: 5px;
+}
 
-    .product-tip {
-        border-bottom: 1px solid #eee;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
+.Cart__productImg {
+  background-image: url(https://fakeimg.pl/640x480/c0cfe8/?text=Img);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-    .product-capacity .span {
-        font-size: 20px;
-        line-height: 24px;
-        font-weight: 400;
-        color: #757575;
-        margin-top: 30px;
-        margin-bottom: 20px;
-    }
+.Cart__productTitle {
+  overflow: hidden;
+  line-height: 25px;
+}
 
+.Cart__productPrice,
+.Cart__productQuantity,
+.Cart__productTotal,
+.Cart__productDel {
+  text-align: center;
+  line-height: 60px;
+}
 
-    .product-card .color {
-        padding: 10px 20px;
-        width: 160px;
-        min-height: 58px;
-        height: 100%;
-        font-size: 16px;
-        line-height: 20px;
-        color: #757575;
-        text-align: center;
-        border: 1px solid #eee;
-        background-color: #fff;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        transition: opacity, border .2s linear;
-        cursor: pointer;
-    }
+@media screen and (max-width: 820px) {
+  .Cart__header {
+    display: none;
+  }
 
-    .product-card .active {
-        color: #424242;
-        border-color: #ff6700;
-        transition: opacity, border .2s linear;
+  .Cart__product {
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-areas:
+      "img title title title title title del"
+      "img price price quantity total total del";
+  }
 
-    }
+  .Cart__productImg {
+    grid-area: img;
+  }
+
+  .Cart__productTitle {
+    grid-area: title;
+  }
+
+  .Cart__productPrice,
+  .Cart__productQuantity,
+  .Cart__productTotal,
+  .Cart__productDel {
+    line-height: initial;
+  }
+
+  .Cart__productPrice {
+    grid-area: price;
+    text-align: right;
+  }
+
+  .Cart__productQuantity {
+    grid-area: quantity;
+    text-align: left;
+  }
+
+  .Cart__productQuantity::before {
+    content: "x";
+  }
+
+  .Cart__productTotal {
+    grid-area: total;
+    text-align: right;
+    color: red;
+  }
+
+  .Cart__productDel {
+    grid-area: del;
+    line-height: 60px;
+    background: #ffc0cb26;
+  }
+}
+
 </style>
+
 @endsection
 @section('content')
 
 <section class="features3 cid-rRF3umTBWU" id="features3-7" style="padding:100px">
     <div class="container">
-        <div class="row">
-            <div class="col-6"></div>
-            <div class="col-6">
-                <div class="product-card">
-                    <div class="product-info">
-                        <div class="product-name">
-                            小米9T Pro
-                        </div>
-                        <div class="product-title">
-                            8GB+256GB, 火焰紅
-                        </div>
-                        <div class="product-sub-title">
-                            NT$12,999
-                        </div>
-                    </div>
-                    <div class="product-tip">
-                        icon雙倍該商品可享受雙倍積分
-                    </div>
-                    <div class="product-capacity">
-                        <span>容量</span>
-                        <div class="color">8GB+256GB</div>
-                    </div>
-                    <div class="product-color">
-                        <span>顏色</span>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="color active" data-color="紅">紅</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="color" data-color="黃">黃</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="color" data-color="藍">藍</div>
-                            </div>
-                            <div class="col-4">
-                                <div class="color">綠</div>
-                            </div>
-                        </div>
-                    </div>
-                    <form action="" method="POST">
-                        @csrf
-                            <div class="product-qty">
-                                數量
-                                <a id="minus" href="#">-</a>
-                                <input type="number" value="1" id="qty" min>
-                                <a id="plus" href="#">+</a>
-                            </div>
-                            <div class="product-total">
-                                <div>
-                                    <span>小米9T Pro</span>
-                                    <span>火焰紅</span>
-                                    <span>8GB+256GB</span>* <span>1</span>
-                                    NT$12,999
-                                </div>
-                            </div>
-                            <input type="text" name="capacity" id="capacity">
-                            <input type="text" name="color" id="color" value="id"><br>
-                            <button>立即購買</button>
-                    </form>
-                </div>
+        <div class="Cart">
+            <div class="Cart__header">
+              <div class="Cart__headerGrid">商品</div>
+              <div class="Cart__headerGrid">單價</div>
+              <div class="Cart__headerGrid">數量</div>
+              <div class="Cart__headerGrid">小計</div>
+              <div class="Cart__headerGrid">刪除</div>
             </div>
+
+            @foreach ($items as $item)
+
+            <div class="Cart__product">
+                <div class="Cart__productGrid Cart__productImg"></div>
+                <div class="Cart__productGrid Cart__productTitle">
+                  {{$item->name}}
+                </div>
+                <div class="Cart__productGrid Cart__productPrice">${{$item->price}}</div>
+                <div class="Cart__productGrid Cart__productQuantity">{{$item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productDel">&times;</div>
+            </div>
+
+            @endforeach
+
+
         </div>
+
+
+
     </div>
 </section>
 
@@ -156,32 +153,6 @@
 @section('js')
 <script>
 
-    $('.product-card.color').click(function(){
-
-        //改變長相
-        $('.product-card .color').removeClass("active");
-        $(this),addClass("active");
-
-
-        var color = $(this).attr("data-color");
-        $('#color').val(color);
-
-    });
-
-    $(function(){
-        var valueElement = $('#qty');
-        function incrementValue(e){
-            var now_number = $('#qty').val();
-            var new_number = Math.max(e.data.increment + parseInt(now_number) , 0);
-            $('#qty').val(new_number);
-
-            return false;
-        }
-
-        $('#plus').bind('click', {increment: 1}, incrementValue);
-        $('#minus').bind('click', {increment: -1}, incrementValue);
-
-    });
 
 </script>
 @endsection

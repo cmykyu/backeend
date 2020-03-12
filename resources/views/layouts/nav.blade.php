@@ -64,11 +64,7 @@
                         購物車
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/login">
-                        login
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/products">
                        shop now
@@ -77,6 +73,12 @@
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/contact">
                        contact
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link link text-primary display-4" href="/login">
+                        login
                     </a>
                 </li>
             </ul>

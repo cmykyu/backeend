@@ -17,11 +17,15 @@ Route::get('/news','FrontController@news');
 Route::get('/news_detail/{id}','FrontController@news_detail');
 
 Route::get('/products','FrontController@products');
-Route::get('/products_detail/{id}','FrontController@products_detail');
+
 
 Route::get('/contact','FrontController@contact');
 
-Route::get('/cart','FrontController@cart');
+Route::get('/products_detail/{product_id}','FrontController@products_detail');//cart結帳頁
+
+Route::post('/add_cart/{product_id}','FrontController@add_cart');//cart加入購物車
+
+Route::get('/cart','FrontController@cart_total');//cart總覽
 
 Auth::routes();
 

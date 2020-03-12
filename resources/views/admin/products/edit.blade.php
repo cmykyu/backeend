@@ -14,7 +14,7 @@
 
 @section('content')
 <div class="container">
-    <h3>編輯最新消息</h3>
+    <h3>編輯產品</h3>
     <form method="POST" action="/home/products/update/{{$products->id}}" enctype="multipart/form-data">
         @csrf
 

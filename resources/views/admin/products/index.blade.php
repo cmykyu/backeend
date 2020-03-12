@@ -15,6 +15,7 @@
                 <th>img</th>
                 <th>type</th>
                 <th>content</th>
+                <th>price</th>
                 <th>sort</th>
                 <th width="90"></th>
 
@@ -28,6 +29,7 @@
                 </td>
                 <td>{{$item->type}}</td>
                 <td>{!!$item->content!!}</td>
+                <td>{{$item->price}}</td>
                 <td>{{$item->sort}}</td>
                 <td>
                     <a href="products/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
