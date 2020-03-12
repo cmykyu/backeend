@@ -33,7 +33,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ '$message' }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -49,9 +49,15 @@
                                     </label>
                                 </div>
                             </div>
-                            
+
                         </div>
                         {!! htmlFormSnippet() !!}
+                        @error('g-recaptcha-response')
+                        <span class="alert alert-danger" role="alert">
+                            <strong>記得打勾</strong>
+                        </span>
+                        @enderror
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="{{asset('assets/theme/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('assets/gallery/style.css')}}">
   <link rel="preload" as="style" href="{{asset('assets/mobirise/css/mbr-additional.css')}}"><link rel="stylesheet" href="{{asset('assets/mobirise/css/mbr-additional.css')}}" type="text/css">
-
+   @yield('css')
 
 
 </head>
@@ -57,6 +57,11 @@
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/news">
                         最新消息
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/cart">
+                        購物車
                     </a>
                 </li>
                 <li class="nav-item">

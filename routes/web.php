@@ -21,6 +21,8 @@ Route::get('/products_detail/{id}','FrontController@products_detail');
 
 Route::get('/contact','FrontController@contact');
 
+Route::get('/cart','FrontController@cart');
+
 Auth::routes();
 
 
