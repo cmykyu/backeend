@@ -21,7 +21,8 @@ Route::get('/products','FrontController@products');
 
 Route::get('/contact','FrontController@contact');
 
-Route::get('/products_detail/{product_id}','FrontController@products_detail');//cart結帳頁
+
+Route::get('/products_detail','FrontController@products_detail');//cart結帳頁
 
 Route::post('/add_cart/{product_id}','FrontController@add_cart');//cart加入購物車
 

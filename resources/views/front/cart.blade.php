@@ -1,5 +1,5 @@
 @extends('layouts/nav')
-@endsection
+
 
 @section('css')
 <style>
@@ -112,6 +112,7 @@
 </style>
 
 @endsection
+
 @section('content')
 
 <section class="features3 cid-rRF3umTBWU" id="features3-7" style="padding:100px">

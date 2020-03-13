@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/cart">
+                    <a class="nav-link link text-white display-4" href="/products_detail">
                         購物車
                     </a>
                 </li>
@@ -205,6 +205,7 @@
   <script src="assets/gallery/script.js"></script>
   <script src="assets/slidervideo/script.js"></script>
 
+    @yield('js')
 
 </body>
 </html>

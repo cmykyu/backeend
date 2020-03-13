@@ -149,9 +149,9 @@
                                 </div>
                             </div>
 
-                            <input type="text" name="capacity" id="capacity" value="8GB+256GB">
+                            <input type="text" name="capacity" id="capacity" value="8GB+256GB"><br>
                             <input type="text" name="color" id="color" value="紅"><br>
-                            <button>立即購買</button>
+                            <button>立即購買<a href="/add_cart"></a></button>
                     </form>
                 </div>
             </div>
@@ -164,11 +164,11 @@
 @section('js')
 <script>
 
-    $('.product-card .color').click(function(){
-        // console.log($this)
+    $('.product-color .color').click(function(){
+        console.log($(this))
         //改變長相
-        $('.product-card .color').removeClass("active");
-        $(this),addClass("active");
+        $('.product-color .color').removeClass("active");
+        $(this).addClass("active");
 
         //把顏色放入input
 

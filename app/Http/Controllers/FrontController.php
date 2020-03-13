@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 
-
+// use Cart;
 use App\News;
 use App\Products;
 use Darryldecode\Cart\Cart;
@@ -33,36 +33,49 @@ class FrontController extends Controller
 
 
 
-    public function products_detail($product_id){
-        $Product = Products::find($productId);
-        return view ('front/products_detail', compact('products'));
+    public function products_detail(){
+
+        $Product = Products::find(1);
+        return view ('front/products_detail',compact('Product'));
     }
 
-    public function add_cart($product_id){
-        $productId = $product_id;
-        $Product = Products::find($productId); // assuming you have a Product model with id, name, description & price
-        $rowId = $productId; // generate a unique() row ID
-        $userID = Auth::user()->id; // the user ID to bind the cart contents
+    // public function products_detail($product_id){
+    //     $productId = $product_id;
+    //     $product = Products::find($productId);
+    //     // dd($Product);
+    //     return view ('front/products_detail', compact('product'));
+    // }
 
+    public function add_cart($productId){
+        // $productId = $product_id;
+
+        $Product = Products::find($productId); // assuming you have a Product model with id, name, description & price
+        $rowId = "444" ;// generate a unique() row ID
+        $userID = Auth::id(); // the user ID to bind the cart contentsdd
         // add the product to cart
         \Cart::session($userID)->add(array(
-        'id' => $rowId,
-        'name' => $Product->title,
-        'price' => $Product->price,
-        'quantity' => 1,
-        'attributes' => array(),
-        'associatedModel' => $Product
+            'id' => $rowId,
+            'name' => $Product->content,
+            'price' => $Product->price,
+            'quantity' => 4,
+            'attributes' => array(),
+            'associatedModel' => $Product
         ));
 
-        return view ('front/add_cart');
+        return redirect('/cart');
     }
 
     public function cart_total(){
         $userID = Auth::user()->id;
         $items = \Cart::session($userID)->getContent();
-
+        dd($items);
         return view ('front/cart', compact('items'));
     }
+
+    public function cart(){
+        return view ('front/cart');
+    }
+
 
     public function contact(){
         return view ('front/contact');
