@@ -5,10 +5,13 @@ use DB;
 
 // use Cart;
 use App\News;
+use App\ConTacts;
 use App\Products;
+use App\Mail\OrderShipped;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -80,6 +83,20 @@ class FrontController extends Controller
     public function contact(){
         return view ('front/contact');
     }
+
+    public function contact_store(Request $request){
+
+
+        $contacts_data = $request->all();
+
+        $content=ConTacts::create($contacts_data);
+
+        Mail::to($request->email)->send(new OrderShipped($content));
+
+        return redirect('/contact');
+    }
+
+
 
 
 

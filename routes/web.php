@@ -21,6 +21,9 @@ Route::get('/products','FrontController@products');
 
 Route::get('/contact','FrontController@contact');
 
+Route::post('/contacts/store','FrontController@contact_store');
+
+
 
 Route::get('/products_detail','FrontController@products_detail');//cart結帳頁
 
@@ -75,7 +78,7 @@ Route::group (['middleware' => ['auth'],'prefix' => '/home'],function(){
      //聯絡我們管理
      Route::get('contacts', 'ContactController@index');
      Route::get('contacts/create', 'ContactController@create');
-     Route::post('contacts/store', 'ContactController@store');
+     Route::get('contacts/store', 'ContactController@store');
 
      Route::get('contacts/edit/{id}', 'ContactController@edit');
      Route::post('contacts/update/{id}', 'ContactController@update');

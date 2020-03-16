@@ -24,7 +24,8 @@
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8" data-form-type="formoid">
                 <!---Formbuilder Form--->
-                <form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="jBRslgPvY+V6iKvPZo2/adSAxfM5AUKE4d58tAnBSo0r6SYXXlfMLNsj6+wqGAIZEgCPRDJt9HlX11mVDo3q8WtjQpUjv1UxLEjLZa3KjwV+3UFS2CtMISYHpWAsnM2S">
+                <form action="/contacts/store" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="jBRslgPvY+V6iKvPZo2/adSAxfM5AUKE4d58tAnBSo0r6SYXXlfMLNsj6+wqGAIZEgCPRDJt9HlX11mVDo3q8WtjQpUjv1UxLEjLZa3KjwV+3UFS2CtMISYHpWAsnM2S">
+                    @csrf
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
