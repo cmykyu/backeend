@@ -138,9 +138,9 @@
                 </div>
                 <div class="Cart__productGrid Cart__productPrice">${{$item->price}}</div>
                 <div class="Cart__productGrid Cart__productQuantity">
-                    <button class="btn btn-sm btn-info btn-minus" data-itemd="{{$item->id}}">-</button>
-                    <span>{{$item->quantity}}</span>
-                    <button class="btn btn-sm btn-info btn-plus"  data-itemd="{{$item->id}}">+</button>
+                    <button class="btn btn-sm btn-info btn-minus" data-itemid="{{$item->id}}">-</button>
+                    <span class="qty" data-itemid="{{$item->id}}">{{$item->quantity}}</span>
+                    <button class="btn btn-sm btn-info btn-plus"  data-itemid="{{$item->id}}">+</button>
                 </div>
                 <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
                 <div class="Cart__productGrid Cart__productDel">&times;</div>
@@ -161,50 +161,70 @@
 @section('js')
 <script>
 
-    $.ajaxSetup({
+$.ajaxSetup({
         headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    $('.btn-minus').click(function(){
+    $('.btn-minus').click(function () {
         var itemid = this.getAttribute('data-itemid');
-            $.ajax({
-                method: 'POST',
-                url: '/cart/update_cart',
-                data: {
-                    data::data,
-                    quantity:-1
 
-                },
-                success:function (res) {
-                    console.log(res);
-                },
-                error:function (jqXHR, testStatus, errorThrown) {
-                    console.error(textStatus + " " + errorThrown );
-                }
+        $.ajax({
+            method: 'POST',
+            url: '/update_cart/'+itemid,
+            data: {
+                quantity:-1
+            },
+            success: function (res) {
+                var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
+                var new_value = parseInt(old_value) + quantity;
+                $(`.qty[data-itemid="${itemid}"]`).text();
 
-            });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus + " " + errorThrown);
+            }
+        });
+
     });
 
-    $('.btn-plus').click(function(){
+    $('.btn-plus').click(function () {
         var itemid = this.getAttribute('data-itemid');
+
+        $.ajax({
+            method: 'POST',
+            url: '/update_cart/'+itemid,
+            data: {
+                quantity:1
+            },
+            success: function (res) {
+                window.location.reload()
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus + " " + errorThrown);
+            }
+        });
+    });
+
+    $('.btn-delete').click(function () {
+        var itemid = this.getAttribute('data-itemid');
+
+        var r=confirm("確定要將此商品從購物車移除嗎?")
+        if (r==true){
             $.ajax({
                 method: 'POST',
-                url: '/cart/update_cart/'+itemid,
-                data: {
-                    quantity:1
+                url: '/delete_cart/'+itemid,
+                data: {},
+                success: function (res) {
+                    window.location.reload()
                 },
-                success:function (res) {
-                    console.log(res);
-                },
-                error:function (jqXHR, testStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.error(textStatus + " " + errorThrown);
                 }
-
             });
+        }
     });
-
 
 
 
