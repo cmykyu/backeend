@@ -3,6 +3,9 @@
 
 @section('css')
 <style>
+.btn-sm{
+    padding:0.6rem 0.5rem;
+}
 .Cart {
 
   margin: 50px auto;
@@ -134,7 +137,11 @@
                   {{$item->name}}
                 </div>
                 <div class="Cart__productGrid Cart__productPrice">${{$item->price}}</div>
-                <div class="Cart__productGrid Cart__productQuantity">{{$item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productQuantity">
+                    <button class="btn btn-sm btn-info btn-minus" data-itemd="{{$item->id}}">-</button>
+                    <span>{{$item->quantity}}</span>
+                    <button class="btn btn-sm btn-info btn-plus"  data-itemd="{{$item->id}}">+</button>
+                </div>
                 <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
                 <div class="Cart__productGrid Cart__productDel">&times;</div>
             </div>
@@ -153,6 +160,53 @@
 
 @section('js')
 <script>
+
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('.btn-minus').click(function(){
+        var itemid = this.getAttribute('data-itemid');
+            $.ajax({
+                method: 'POST',
+                url: '/cart/update_cart',
+                data: {
+                    data::data,
+                    quantity:-1
+
+                },
+                success:function (res) {
+                    console.log(res);
+                },
+                error:function (jqXHR, testStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown );
+                }
+
+            });
+    });
+
+    $('.btn-plus').click(function(){
+        var itemid = this.getAttribute('data-itemid');
+            $.ajax({
+                method: 'POST',
+                url: '/cart/update_cart/'+itemid,
+                data: {
+                    quantity:1
+                },
+                success:function (res) {
+                    console.log(res);
+                },
+                error:function (jqXHR, testStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+
+            });
+    });
+
+
+
 
 
 </script>

@@ -92,7 +92,7 @@
                 <div class="product-card">
                     <div class="product-info">
                         <div class="product-name">
-                            {{$Product->title}}
+                            {{$Product->type}}
                         </div>
                         <div class="product-title">
                             8GB+256GB, 火焰紅

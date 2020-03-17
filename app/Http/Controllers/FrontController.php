@@ -68,10 +68,12 @@ class FrontController extends Controller
         return redirect('/cart');
     }
 
+
+
     public function cart_total(){
         $userID = Auth::user()->id;
         $items = \Cart::session($userID)->getContent();
-        dd($items);
+        // dd($items);
         return view ('front/cart', compact('items'));
     }
 
