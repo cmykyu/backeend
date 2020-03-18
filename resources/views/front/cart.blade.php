@@ -143,10 +143,17 @@
                     <button class="btn btn-sm btn-info btn-plus"  data-itemid="{{$item->id}}">+</button>
                 </div>
                 <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
-                <div class="Cart__productGrid Cart__productDel">&times;</div>
+                <div class="Cart__productGrid Cart__productDel">
+                    <button class="btn btn-sm btn-info btn-delete" data-itemid="{{$item->id}}">&times;</button>
+                </div>
+            </div>
+            @endforeach
+            <hr>
+            <div>
+                <button class="btn btn-sm btn-primary">前往結帳<a href="/cart_checkout"></a></button>
             </div>
 
-            @endforeach
+
 
 
         </div>
@@ -169,6 +176,7 @@ $.ajaxSetup({
 
     $('.btn-minus').click(function () {
         var itemid = this.getAttribute('data-itemid');
+        console.log(itemid);
 
         $.ajax({
             method: 'POST',
@@ -178,7 +186,7 @@ $.ajaxSetup({
             },
             success: function (res) {
                 var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
-                var new_value = parseInt(old_value) + quantity;
+                var new_value = parseInt(old_value) -1;
                 $(`.qty[data-itemid="${itemid}"]`).text();
 
             },

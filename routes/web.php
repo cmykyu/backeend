@@ -16,20 +16,43 @@ Route::get('/', 'FrontController@index');
 Route::get('/news','FrontController@news');
 Route::get('/news_detail/{id}','FrontController@news_detail');
 
-Route::get('/products','FrontController@products');
+
 
 
 Route::get('/contact','FrontController@contact');
 
 Route::post('/contacts/store','FrontController@contact_store');
 
+Route::get('/products','FrontController@products');//產品頁
+Route::get('/products_detail','FrontController@products_detail');//產品內容介紹頁
+Route::post('/add_cart/{product_id}','FrontController@add_cart'); //cart 加入購物車
+Route::post('/update_cart/{product_id}','FrontController@update_cart'); //cart 更新購物車數量
+Route::post('/delete_cart/{product_id}','FrontController@delete_cart'); //cart 刪除商品於購物車中
+Route::get('/cart','FrontController@cart_total'); //cart 總覽
+
+Route::get('/cart_checkout','FrontController@cart_checkout'); //cart 結帳
+Route::post('/cart_checkout','FrontController@post_cart_checkout'); //cart 結帳
+
+Route::get('/TEST','FrontController@sendOrder');//純測試用
 
 
-Route::get('/products_detail','FrontController@products_detail');//cart結帳頁
 
-Route::post('/add_cart/{product_id}','FrontController@add_cart');//cart加入購物車
+Route::prefix('cart_ecpay')->group(function(){
 
-Route::get('/cart','FrontController@cart_total');//cart總覽
+    //當消費者付款完成後，綠界會將付款結果參數以幕後(Server POST)回傳到該網址。
+    Route::post('notify', 'CartController@notifyUrl')->name('notify');
+
+    //付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址
+    Route::post('return', 'CartController@returnUrl')->name('return');
+});
+
+
+
+
+
+
+
+Route::get('/checkout','FrontController@products_detail');
 
 Auth::routes();
 
