@@ -87,7 +87,7 @@
 <section class="features3 cid-rRF3umTBWU" id="features3-7" style="padding:100px">
     <div class="container">
         <div class="row">
-            <div class="col-6"></div>
+            <div class="col-6"><img src="{{$Product->img}}" width="600px"></div>
             <div class="col-6">
                 <div class="product-card">
                     <div class="product-info">

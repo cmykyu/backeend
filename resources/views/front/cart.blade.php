@@ -134,7 +134,7 @@
             <div class="Cart__product">
                 <div class="Cart__productGrid Cart__productImg"></div>
                 <div class="Cart__productGrid Cart__productTitle">
-                  {{$item->name}}
+                  {{$item->type}}
                 </div>
                 <div class="Cart__productGrid Cart__productPrice">${{$item->price}}</div>
                 <div class="Cart__productGrid Cart__productQuantity">
@@ -176,7 +176,7 @@ $.ajaxSetup({
 
     $('.btn-minus').click(function () {
         var itemid = this.getAttribute('data-itemid');
-        console.log(itemid);
+        // console.log(itemid);
 
         $.ajax({
             method: 'POST',
@@ -187,7 +187,7 @@ $.ajaxSetup({
             success: function (res) {
                 var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
                 var new_value = parseInt(old_value) -1;
-                $(`.qty[data-itemid="${itemid}"]`).text();
+                $(`.qty[data-itemid="${itemid}"]`).text(new_value);
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -207,12 +207,15 @@ $.ajaxSetup({
                 quantity:1
             },
             success: function (res) {
-                window.location.reload()
+                var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
+                var new_value = parseInt(old_value) + 1;
+                $(`.qty[data-itemid="${itemid}"]`).text(new_value);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus + " " + errorThrown);
             }
         });
+
     });
 
     $('.btn-delete').click(function () {
@@ -233,9 +236,5 @@ $.ajaxSetup({
             });
         }
     });
-
-
-
-
 </script>
 @endsection
