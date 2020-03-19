@@ -80,16 +80,6 @@ class FrontController extends Controller
     }
 
     public function update_cart(Request $request ,$product_id){
-        // $quantity = $request->quantity;
-
-        // Cart::update($product_id, array(
-        //     'quantity' => $quantity, // so if the current product has a quantity of 4, it will subtract 1 and will result to 3
-        //   ));
-
-        return 'success';
-    }
-
-    public function delete_cart(Request $request ,$product_id){
         $quantity = $request->quantity;
 
         Cart::update($product_id, array(
@@ -99,29 +89,41 @@ class FrontController extends Controller
         return 'success';
     }
 
+    public function delete_cart(Request $request ,$product_id){
+
+        Cart::remove($product_id);
+        return 'success';
+    }
+
+    public function cart_total()
+    {
+        $items = \Cart::getContent()->sort();
+
+        return view('front.cart', compact('items'));
+    }
+
+    public function cart_checkout()
+    {
+        $items = \Cart::getContent()->sort();
+        return view('front.cart_checkout', compact('items'));
+    }
+
+
+
+
     public function post_cart_checkout(Request $request){
 
         $recipient_name = $request->recipient_name;
         $recipient_phone = $request->recipient_phone;
         $recipient_address = $request->recipient_address;
         $shipment_time = $request->shipment_time;
-
     }
 
 
 
 
-    public function cart_total(){
-        $userID = Auth::user()->id;
-        $items = \Cart::session($userID)->getContent();
-        // dd($items);
-        return view ('front/cart', compact('items'));
-    }
 
-    public function cart_checkout(){
-        $items = \Cart::getContent()->sort();
-        return view ('front/cart_checkout',compact('items'));
-    }
+
 
     public function sendOrder()
     {
